@@ -10,6 +10,9 @@ const createBook = new Book({
   author:req.body.title
 })
 
-const {error} = joi.validate(createBook,bookSchema)
+const {error} = joi.validate(createBook,bookSchema);
+if(error) res.status(400).send(error.details[0].message)
+const result = await createBook.save();
+res.send(result)
 
 }
