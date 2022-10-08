@@ -1,4 +1,7 @@
-
+const Book = require("../models/createBook")
 exports.addBook = (req,res)=>{
-res.send("sent");
+const createBook = new Book({
+  title:req.body.title,
+  author:req.body.title
+})
 }
