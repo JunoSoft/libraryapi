@@ -13,6 +13,26 @@ const bookSchema = new mongoose.Schema({
     required:true,
     trim:true
   },
+  pages:{
+    type:Number,
+    required:true,
+    trim:true
+  },
+  cost:{
+    type:Number,
+    required:true,
+    trim:true
+  },
+  store:{
+    type:Number,
+    required:true,
+    trim:true
+  },
+  viwerAge:{
+    type:Number,
+    required:true,
+    trim:true
+  },
 
 })
 const Book = mongoose.model("Books",bookSchema);

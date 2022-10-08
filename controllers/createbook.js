@@ -11,6 +11,11 @@ function validateBook(book){
 const schema = {
   title:Joi.string().required().min(3).trim(true),
   author:Joi.string().required().min(2).trim(true),
+  pages:Joi.number().required().min(1).trim(true),
+  cost:Joi.number().required().min(1).trim(true),
+  store:Joi.number().required().min(1).trim(true),
+  viwerAge:Joi.number().required().min(1).trim(true),
+
 
 }
 return Joi.validate(book,schema)
