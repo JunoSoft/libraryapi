@@ -28,7 +28,7 @@ const bookSchema = new mongoose.Schema({
     required:true,
     trim:true
   },
-  viwerAge:{
+  viewerAge:{
     type:Number,
     required:true,
     trim:true
