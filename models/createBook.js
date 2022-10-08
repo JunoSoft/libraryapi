@@ -1,4 +1,4 @@
-const express = require("express");
+
 const mongoose = require("mongoose");
 
 const bookSchema = new mongoose.Schema({
@@ -12,3 +12,5 @@ const bookSchema = new mongoose.Schema({
   },
 
 })
+const book = mongoose.model("Books",bookSchema);
+exports.book  = book
