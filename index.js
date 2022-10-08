@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bookRoutes = require("./routers/createBook");
+const bookRoutes = require("./routers/books");
 const app = express();
 
 mongoose.connect("mongodb://localhost/liblarydb")
