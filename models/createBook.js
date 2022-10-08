@@ -4,13 +4,16 @@ const mongoose = require("mongoose");
 const bookSchema = new mongoose.Schema({
   title:{
     type:String,
-    required:true
+    required:true,
+    unique:true,
+    trim:true
   },
   author:{
     type:String,
-    required:true
+    required:true,
+    trim:true
   },
 
 })
-const book = mongoose.model("Books",bookSchema);
-exports.Book  = book
+const Book = mongoose.model("Books",bookSchema);
+module.exports  = Book

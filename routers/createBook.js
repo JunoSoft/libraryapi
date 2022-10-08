@@ -1,8 +1,8 @@
 const express = require("express");
-const {createBook} = require("../controllers/createbook")
+const createBook = require("../controllers/createbook")
 const router = express.Router();
 
-router.post("/api/addbook",createBook);
+router.post("/",createBook);
 
-module.exports.router = router;
+module.exports = router;
 

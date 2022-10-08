@@ -1,18 +1,33 @@
-const Book = require("../models/createBook")
-exports.createBook = async (req,res)=>{
+const Book = require("../models/createBook");
+const Joi = require('joi')
+const createBook = async (req,res)=>{
 
-const bookSchema = {
-  title:joi.string().required(),
-  author:joi.string().required()
-}
-const createBook = new Book({
+
+let newBook = new Book({
   title:req.body.title,
-  author:req.body.title
+  author:req.body.author
 })
-
-const {error} = joi.validate(createBook,bookSchema);
-if(error) res.status(400).send(error.details[0].message)
-const result = await createBook.save();
-res.send(result)
+function validateBook(book){
+const schema = {
+  title:Joi.string().required().min(3).trim(true),
+  author:Joi.string().required().min(2).trim(true),
 
 }
+return Joi.validate(book,schema)
+}
+const {error} = validateBook(req.body);
+if(error) {
+  res.status(400).send(error.details[0].message);
+  res.status()
+}
+try{
+
+  const result = await newBook.save();
+  res.send(result)
+}
+catch(error){
+  res.send(error.message)
+}
+
+}
+module.exports = createBook
