@@ -4,6 +4,6 @@ const app = express();
 
 
 app.use(express.json()) 
-app.use("/",book);
+app.use("/api/",book);
 
 app.listen(3000,()=>console.log("SERVER IS well Connected--PORT: 3000"))

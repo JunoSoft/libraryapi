@@ -1,5 +1,5 @@
 const Book = require("../models/createBook")
-exports.addBook = async (req,res)=>{
+exports.createBook = async (req,res)=>{
 
 const bookSchema = {
   title:joi.string().required(),
