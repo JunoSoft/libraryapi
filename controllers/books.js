@@ -1,5 +1,6 @@
 const Book = require("../models/books");
-const Joi = require('joi')
+const Joi = require('joi');
+const { param } = require("../routers/books");
 const createBook = async (req,res)=>{
 
 
@@ -40,4 +41,35 @@ catch(error){
 }
 
 }
-module.exports = createBook
+
+const getBooks  = async (req,res)=>{
+  try{
+
+    const books = await Book
+    .find()
+    res.send(books)
+  }
+  catch(error){
+    res.status(500).send("SERVER PROBLEM");
+    res.send(error.message);
+  }
+
+}
+const updateBook  = async (req,res)=>{
+
+  try{
+
+    const books = await Book
+    .put({_id:req.param.id},{title:req.body.title})
+    res.send(books)
+  }
+  catch(error){
+    res.status(500).send("SERVER PROBLEM");
+    res.send(error.message);
+  }
+
+}
+
+module.exports.createBook = createBook
+module.exports.getBooks = getBooks
+module.exports.updateBook = updateBook
