@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post("/addbook",createBook);
 router.get("/getbooks",getBooks)
-router.get("/updatebook/:id",updateBook)
+router.put("/updatebook/:id",updateBook)
 
 
 module.exports = router;
