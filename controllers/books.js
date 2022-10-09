@@ -25,6 +25,7 @@ const createBook = async (req, res) => {
   if (error) {
     res.status(400).send(error.details[0].message);
     res.status();
+    return ;
   }
   try {
     const result = await newBook.save();
@@ -53,9 +54,21 @@ const updateBook = async (req, res) => {
     }
   } catch (error) {
     res.send(error.message);
+    return ;
+  }
+};
+const deleteBook = async (req, res) => {
+  try {
+    const bookToDelete = await Book.findByIdAndRemove(req.params.id);
+      res.send(bookToDelete);
+    
+  } catch (error) {
+    res.send(error.message);
+    return ;
   }
 };
 
 module.exports.createBook = createBook;
 module.exports.getBooks = getBooks;
 module.exports.updateBook = updateBook;
+module.exports.deleteBook = deleteBook;
