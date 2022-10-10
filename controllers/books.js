@@ -21,17 +21,23 @@ const createBook = async (req, res) => {
     };
     return Joi.validate(book, schema);
   }
+  const checkBook = await Book.findOne({ title: req.body.title });
+
   const { error } = validateBook(req.body);
   if (error) {
     res.status(400).send(error.details[0].message);
-    res.status();
-    return ;
+    return;
+  }
+  if (checkBook.title === req.body.title) {
+    res.send(`${checkBook.title} is Already Exist`);
+    
   }
   try {
     const result = await newBook.save();
     res.send(result);
   } catch (error) {
     res.send(error.message);
+    return ;
   }
 };
 
@@ -46,25 +52,31 @@ const getBooks = async (req, res) => {
 };
 const updateBook = async (req, res) => {
   try {
-    const bookToUpdate = await Book.findByIdAndUpdate({ _id: req.params.id },{ $set: { title: req.body.title } });
+    const checkBookId = await Book.findById(req.params.id);
+    console.log(checkBookId);
+    if(!checkBookId){
+      res.status(400).send("Id Doesn't exist");
+    }
+    const bookToUpdate = await Book.findByIdAndUpdate(
+      { _id: req.params.id },
+      { $set: { title: req.body.title } }
+    );
     if (bookToUpdate) {
-
       const result = await bookToUpdate.save();
       res.send(result);
     }
   } catch (error) {
     res.send(error.message);
-    return ;
+    return;
   }
 };
 const deleteBook = async (req, res) => {
   try {
     const bookToDelete = await Book.findByIdAndRemove(req.params.id);
-      res.send(bookToDelete);
-    
+    res.send(bookToDelete);
   } catch (error) {
     res.send(error.message);
-    return ;
+    return;
   }
 };
 
