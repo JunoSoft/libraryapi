@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 const bookSchema = new mongoose.Schema({
-  title:{
+  bookId:{
     type:String,
     required:true,
     unique:true,
@@ -18,21 +18,8 @@ const bookSchema = new mongoose.Schema({
     required:true,
     trim:true
   },
-  cost:{
-    type:Number,
-    required:true,
-    trim:true
-  },
-  store:{
-    type:Number,
-    required:true,
-    trim:true
-  },
-  viewerAge:{
-    type:Number,
-    required:true,
-    trim:true
-  },
+
+
 
 })
 const Order = mongoose.model("Order",bookSchema);
