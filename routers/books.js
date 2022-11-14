@@ -4,7 +4,7 @@ const {createBook,getBooks,updateBook,deleteBook} = require("../controllers/book
 const router = express.Router();
 
 router.post("/addbook",createBook);
-router.get("/getbooks",getBooks)
+router.get("/getbooks",getBooks);
 router.put("/updatebook/:id",updateBook)
 router.delete("/deletebook/:id",deleteBook)
 
